@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./todo
+      dockerfile: backend/Dockerfile
+    container_name: todo_backend
+    volumes:
+      - ./todo:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=True
+      - DATABASE_URL=sqlite:///db.sqlite3
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./todo/frontend
+      dockerfile: Dockerfile
+    container_name: todo_frontend
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
+volumes:
+  db_data: 

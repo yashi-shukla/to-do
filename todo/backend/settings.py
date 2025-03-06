@@ -25,7 +25,7 @@ SECRET_KEY = '8a2ne0t0r3d1ol8d#s^srer0^9ai+gbcoliwhwma@=249uc93)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', 'backend']
 
 
 # Application definition
@@ -125,5 +125,10 @@ STATIC_URL = '/static/'
 
 # we whitelist localhost:3000 because that's where frontend will be served
 CORS_ORIGIN_WHITELIST = (
-     'localhost:3000/'
- )
+    'http://localhost:3000',
+    'http://localhost:80',
+    'http://localhost',
+    'http://frontend',
+)
+
+CORS_ALLOW_CREDENTIALS = True
